@@ -57,7 +57,6 @@ const Navbar = () => {
                 <Link to="/about" className="text-gray-300 hover:text-white">About Us</Link>
                 <Link to="/contact" className="text-gray-300 hover:text-white">Contact</Link>
                 <Link to="/review" className="text-gray-300 hover:text-white">Review</Link>
-                <Link to="/profile" className="text-gray-300 hover:text-white">Profile</Link>
 
 
                 <button
@@ -69,7 +68,7 @@ const Navbar = () => {
 
                 {user ? (
                   <>
-                    <span className="text-white">{user.fullName}</span>
+                    <Link to="/profile" className="text-white">{user.fullName}</Link>
                     <button
                       onClick={handleLogout}
                       className="bg-orange-600 px-3 py-2 text-white rounded-md hover:bg-orange-700"

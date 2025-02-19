@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { registerUser,loginUser, getUser } from "../controllers/user.controller.js";
+import { registerUser,loginUser, getUser, createBooking, getBookingDetails } from "../controllers/user.controller.js";
 // import { verifyJWT } from "../middlewares/auth.middleware.js";
 
 const router=Router();
@@ -12,6 +12,8 @@ router.route("/register").post(registerUser)
 
 router.route("/login").post(loginUser)
 router.route("/userDetails/:id").get(getUser)
+router.route("/bookTour").post(createBooking)
+router.route("/bookingDetails/:id").get(getBookingDetails)
 
 //Secured routes
 // router.route("/logout").post( verifyJWT, logoutUser)

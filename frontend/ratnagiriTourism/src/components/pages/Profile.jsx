@@ -1,28 +1,71 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ProfileImg from "../../Images/Profile_Cover.jpg";
 import { FaUser, FaEdit } from "react-icons/fa";
+import axios from "axios";
 
-const Profile= () => {
+const Profile = () => {
   const [activeTab, setActiveTab] = useState("favourites");
   const [profilePic, setProfilePic] = useState(null);
+  const [user, setUser] = useState(null);
+  const [bookings, setBookings] = useState([]); // State for bookings data
+  const [loading, setLoading] = useState(true); // Loading state for data fetching
 
-  // Placeholder user data (replace with actual data from backend)
-  const user = {
-    name: "Pooja Bhambid",
-    location: "Maharashtra, India",
-    favourites: [],
-    bookings: [],
-    history: [],
-  };
+  const userId = sessionStorage.getItem("userId");
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      if (!userId) return;
+
+      try {
+        const res = await axios.get(`/api/v1/users/userDetails/${userId}`);
+        setUser(res.data);
+        console.log(res.data, "getUserapi");
+      } catch (err) {
+        console.error("Error fetching user:", err.response?.data?.message || err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchUser();
+  }, [userId]);
+
+  useEffect(() => {
+    const userId = sessionStorage.getItem("userId");
+
+    console.log("User ID from sessionStorage: ", userId); 
+
+    const fetchBookings = async () => {
+      if (!userId) {
+        console.error("User ID is not available in sessionStorage");
+        return; 
+      }
+
+      try {
+        const res = await axios.get(`/api/v1/users/bookingDetails/${userId}`);
+        setBookings(res.data.bookings || []);
+        console.log(res.data.bookings, "getBookingsapi");
+      } catch (err) {
+        console.error("Error fetching bookings:", err.response?.data?.message || err.message);
+      }
+    };
+
+    fetchBookings();
+  }, [userId]); // Runs when component mounts and userId changes
 
   // Handle Profile Picture Upload
-  const handleProfilePicChange = (event) => {
-    const file = event.target.files[0];
+  const handleProfilePicChange = (e) => {
+    const file = e.target.files[0];
     if (file) {
-      const imageUrl = URL.createObjectURL(file);
-      setProfilePic(imageUrl);
+      const reader = new FileReader();
+      reader.onload = () => setProfilePic(reader.result);
+      reader.readAsDataURL(file);
     }
   };
+
+  if (loading) {
+    return <div>Loading...</div>; // Display loading indicator while data is being fetched
+  }
 
   return (
     <div className="min-h-screen bg-gray-100 flex justify-center py-10 px-4">
@@ -61,8 +104,8 @@ const Profile= () => {
               />
             </label>
             <div>
-              <h2 className="text-xl capitalize font-semibold">{user.name}</h2>
-              <p className="text-gray-500">{user.location}</p>
+              <h2 className="text-xl capitalize font-semibold">{user?.fullName || "User"}</h2>
+              <p className="text-gray-500">{user?.location || "Location not available"}</p>
             </div>
           </div>
           {/* Edit Button */}
@@ -73,23 +116,17 @@ const Profile= () => {
 
         {/* Tabs */}
         <div className="flex justify-around mt-4 sm:mt-6 border-b pb-2 text-gray-600">
-          {[
-            {
-              id: "favourites",
-              label:` My Wishlist (${user.favourites.length})`,
-            },
-            {
-              id: "history",
-              label: `Booking History (${user.history.length})`,
-            },
-          ].map((tab) => (
+          {[{
+            id: "favourites",
+            label: `My Wishlist (${user?.favourites?.length || 0})`
+          },
+          {
+            id: "history",
+            label: `Booking History (${bookings?.length || 0})` // Display count of bookings
+          }].map((tab) => (
             <button
               key={tab.id}
-              className={`cursor-pointer font-semibold px-4 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 ${
-                activeTab === tab.id
-                  ? "text-white bg-orange-500"
-                  : "hover:bg-gray-200"
-              }`}
+              className={`cursor-pointer font-semibold px-4 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 ${activeTab === tab.id ? "text-white bg-orange-500" : "hover:bg-gray-200"}`}
               onClick={() => setActiveTab(tab.id)}
             >
               {tab.label}
@@ -99,12 +136,13 @@ const Profile= () => {
 
         {/* Tab Content */}
         <div className="mt-6 p-4 sm:p-6">
+          {/* Favourites Tab */}
           {activeTab === "favourites" && (
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-              {user.favourites.length > 0 ? (
+              {user?.favourites?.length > 0 ? (
                 user.favourites.map((item) => (
                   <div
-                    key={item}
+                    key={item} // Assuming 'item' is a unique identifier
                     className="bg-white shadow-md rounded-lg overflow-hidden"
                   >
                     <img
@@ -121,20 +159,58 @@ const Profile= () => {
                 ))
               ) : (
                 <div className="col-span-full flex justify-center items-center h-32">
-                  <p className="text-center text-gray-600 capitalize">
-                    No favourites added yet.
-                  </p>
+                  <p className="text-center text-gray-600 capitalize">No favourites added yet.</p>
                 </div>
               )}
             </div>
           )}
+
+          {/* Booking History Tab */}
           {activeTab === "history" && (
-            <div className="flex justify-center items-center h-32">
-              <p className="text-center text-gray-600 capitalize">
-                No booking history available.
-              </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+              {bookings.length > 0 ? (
+                bookings.map((booking) => (
+                  <div
+                    key={booking._id} // Using '_id' as the unique key for each booking
+                    className="bg-white shadow-lg rounded-lg overflow-hidden transform hover:scale-105 transition-all duration-300"
+                  >
+                    <div className="p-4">
+                      <h3 className="font-semibold text-xl text-gray-800">{booking.title}</h3>
+                      <p className="text-gray-500 text-sm mb-2">Date: {new Date(booking.date).toLocaleDateString()}</p>
+                      <p
+                        className={`text-sm font-semibold mb-2 ${booking.status === "Active" ? "text-green-600" : "text-red-600"}`}
+                      >
+                        Status: {booking.status}
+                      </p>
+                      <p className="text-gray-700 font-medium">Amount: ${booking.price}</p>
+
+                      {/* Description */}
+                      <p className="text-gray-600 mt-2">
+                        {booking.description.length > 150 ? (
+                          <>
+                            {booking.description.slice(0, 150)}...
+                            <button
+                              onClick={() => alert(booking.description)} // On click, show the full description
+                              className="text-orange-500 hover:text-orange-700 ml-1"
+                            >
+                              Read More
+                            </button>
+                          </>
+                        ) : (
+                          booking.description
+                        )}
+                      </p>
+                    </div>
+                  </div>
+                ))
+              ) : (
+                <div className="col-span-full flex justify-center items-center h-32">
+                  <p className="text-center text-gray-600 capitalize">No booking history available.</p>
+                </div>
+              )}
             </div>
           )}
+
         </div>
       </div>
     </div>
