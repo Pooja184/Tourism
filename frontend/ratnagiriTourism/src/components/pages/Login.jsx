@@ -15,19 +15,18 @@ function Login() {
   function handleChange(event) {
     setFormData({ ...formData, [event.target.name]: event.target.value });
   }
-  
 
   async function handleSubmit(event) {
     event.preventDefault();
-  
+
     if (!formData.email || !formData.password) {
       alert("Please fill all the fields");
       return;
     }
-  
+
     try {
       const response = await axios.post("/api/v1/users/login", formData);
-  
+      console.log(response);
       if (response.data.success) {
         sessionStorage.setItem("userId", response.data.users._id);
         navigate("/");
@@ -37,7 +36,7 @@ function Login() {
       }
     } catch (error) {
       console.error("Login Error:", error);
-  
+
       if (error.response) {
         if (error.response.status === 404) {
           toast.error("User does not exist. Please sign up.");
@@ -52,7 +51,6 @@ function Login() {
       }
     }
   }
-  
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-blue-50 to-indigo-100 px-4">
@@ -100,7 +98,10 @@ function Login() {
         </form>
         <p className="text-sm text-center text-gray-500">
           Don't have an account?{" "}
-          <Link to="/register" className="text-indigo-500 font-semibold hover:underline">
+          <Link
+            to="/register"
+            className="text-indigo-500 font-semibold hover:underline"
+          >
             Sign up here
           </Link>
         </p>

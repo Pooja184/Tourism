@@ -21,6 +21,8 @@ import Contact from "./components/pages/Contact";
 import IndexPage from "./components/BookHotel/IndexPage";
 import { Toaster } from "react-hot-toast"; 
 import Profile from "./components/pages/Profile";
+import BookTour from "./components/BookHotel/BookTour";
+import BookingForm from "./components/BookHotel/BookingForm";
 
 
 function App() {
@@ -42,7 +44,9 @@ function App() {
            <Route path="/about" element={<About />} />
            <Route path="/contact" element={<Contact/>}/>
            <Route path="/review" element={<Review />} />
-           <Route path="/bookHotels" element={<IndexPage />} />
+           {/* <Route path="/bookHotels" element={<IndexPage />} /> */}
+           <Route path="/bookTour" element={<BookTour/>}/>
+           <Route path="/booking" element={<BookingForm/>} />
            <Route path="/profile" element={<Profile/>}/>
            <Route path="/ratnagiri" element={<Ratnagiri/>}/>
            <Route path="/rajapur" element={<Rajapur/>}/>

@@ -10,7 +10,7 @@ const OneTehsil = ({ title, image, description, visitURL }) => {
           className="absolute inset-0 h-full w-full object-cover"
           alt={`Image of ${title}`}
         />
-        <div className="absolute inset-0 flex flex-col justify-start items-start text-white bg-black bg-opacity-60 p-3 sm:p-4">
+        <div className="absolute inset-0 flex flex-col justify-start items-start text-white bg-black bg-opacity-30 p-3 sm:p-4">
           <p className="text-3xl sm:text-2xl md:text-2xl lg:text-3xl z-10 m-1 uppercase">
             {title}
           </p>

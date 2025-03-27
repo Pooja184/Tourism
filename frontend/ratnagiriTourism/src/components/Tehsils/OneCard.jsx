@@ -38,16 +38,16 @@ const OneCard = ({ title, image, description, price }) => {
       <div className="p-4 flex-grow">
         <h3 className="text-xl font-bold">{title}</h3>
         <p className="text-gray-600 mb-2">{description}</p>
-        <p className="text-lg font-semibold text-green-600">₹{price}</p>
+        {/* <p className="text-lg font-semibold text-green-600">₹{price}</p> */}
       </div>
-      <div className="p-4">
+      {/* <div className="p-4">
         <button
           onClick={handleBooking}
           className="w-full bg-blue-500 text-white font-semibold p-2 rounded-lg hover:bg-blue-600"
         >
           Book Now
         </button>
-      </div>
+      </div> */}
     </div>
   );
 };

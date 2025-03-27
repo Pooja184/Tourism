@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { HiUserCircle } from "react-icons/hi2";
 import axios from "axios";
 import toast from "react-hot-toast";
 
@@ -35,11 +36,12 @@ const Navbar = () => {
 
   const handlePlanYourStay = () => {
     if (userId) {
-      navigate("/bookHotels");
+      navigate("/bookTour");
     } else {
       navigate("/login");
       console.log("/login")
     }
+    // navigate("/bookTour");
   };
 
   return (
@@ -63,18 +65,14 @@ const Navbar = () => {
                   onClick={handlePlanYourStay }
                   className="block rounded-md bg-orange-600 px-3 py-2 text-base font-medium text-white hover:bg-orange-700"
                 >
-                  Plan your stay
+                  Book Tour
                 </button>
 
                 {user ? (
                   <>
-                    <Link to="/profile" className="text-white">{user.fullName}</Link>
-                    <button
-                      onClick={handleLogout}
-                      className="bg-orange-600 px-3 py-2 text-white rounded-md hover:bg-orange-700"
-                    >
-                      Log Out
-                    </button>
+                    {/* <Link to="/profile" className="text-white">{user.fullName}</Link> */}
+                    <Link to="/profile" className="text-white text-4xl"><HiUserCircle/></Link>
+                   
                   </>
                 ) : (
                   <Link

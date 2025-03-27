@@ -1,9 +1,14 @@
 import React, { useEffect, useState } from "react";
 import ProfileImg from "../../Images/Profile_Cover.jpg";
-import { FaUser, FaEdit } from "react-icons/fa";
+import { FaUser } from "react-icons/fa";
+import { FiLogOut } from "react-icons/fi";
 import axios from "axios";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
+
 
 const Profile = () => {
+  const navigate=useNavigate()
   const [activeTab, setActiveTab] = useState("favourites");
   const [profilePic, setProfilePic] = useState(null);
   const [user, setUser] = useState(null);
@@ -44,7 +49,7 @@ const Profile = () => {
       try {
         const res = await axios.get(`/api/v1/users/bookingDetails/${userId}`);
         setBookings(res.data.bookings || []);
-        console.log(res.data.bookings, "getBookingsapi");
+        console.log(res.data.data,"bookingdetails")
       } catch (err) {
         console.error("Error fetching bookings:", err.response?.data?.message || err.message);
       }
@@ -61,6 +66,14 @@ const Profile = () => {
       reader.onload = () => setProfilePic(reader.result);
       reader.readAsDataURL(file);
     }
+  };
+
+  // Handles logout
+  const handleLogout = () => {
+    sessionStorage.removeItem("userId"); // Clear session
+    setUser(null); // Update state
+    navigate("/"); // Redirect to home
+    toast.success("Logout succesfully")
   };
 
   if (loading) {
@@ -105,12 +118,14 @@ const Profile = () => {
             </label>
             <div>
               <h2 className="text-xl capitalize font-semibold">{user?.fullName || "User"}</h2>
-              <p className="text-gray-500">{user?.location || "Location not available"}</p>
+              {/* <p className="text-gray-500">{user?.location || "Location not available"}</p> */}
             </div>
           </div>
           {/* Edit Button */}
-          <button className="flex items-center bg-orange-500 text-white px-3 py-1 rounded text-sm mt-4 sm:mt-0 hover:bg-orange-600 transition-colors">
-            <FaEdit className="mr-1" /> Edit Profile
+          <button 
+          onClick={handleLogout}
+          className="flex items-center bg-orange-500 text-white px-3 py-1 rounded text-sm mt-4 sm:mt-0 hover:bg-orange-600 transition-colors">
+            <FiLogOut className="mr-1" />Logout
           </button>
         </div>
 
@@ -176,16 +191,17 @@ const Profile = () => {
                   >
                     <div className="p-4">
                       <h3 className="font-semibold text-xl text-gray-800">{booking.title}</h3>
-                      <p className="text-gray-500 text-sm mb-2">Date: {new Date(booking.date).toLocaleDateString()}</p>
-                      <p
+                      <p className="text-gray-500 text-sm mb-2">  Date: {new Date(booking.bookedAt).toLocaleString()}
+                      </p>
+                      {/* <p
                         className={`text-sm font-semibold mb-2 ${booking.status === "Active" ? "text-green-600" : "text-red-600"}`}
                       >
                         Status: {booking.status}
-                      </p>
-                      <p className="text-gray-700 font-medium">Amount: ${booking.price}</p>
+                      </p> */}
+                      <p className="text-gray-700 font-medium">Amount: ${booking.tourTitle}</p>
 
                       {/* Description */}
-                      <p className="text-gray-600 mt-2">
+                      {/* <p className="text-gray-600 mt-2">
                         {booking.description.length > 150 ? (
                           <>
                             {booking.description.slice(0, 150)}...
@@ -199,7 +215,7 @@ const Profile = () => {
                         ) : (
                           booking.description
                         )}
-                      </p>
+                      </p> */}
                     </div>
                   </div>
                 ))
