@@ -1,98 +1,56 @@
 import React from "react";
 import OneCard from "./OneCard";
-// import RTHomePage from "../Images/Ratnagiri/RTHomePage.jpg";
-import RTHomePage from "../../Images/Ratnagiri/RTHomePage.jpg"
-import Ganapatipule from "../../Images/Ratnagiri/Ganapatipule.jpg"
-
-import Ratnadurg from "../../Images/Ratnagiri/Ratnadurg.jpg";
-import Thiba_Palace from "../../Images/Ratnagiri/Thiba.jpg";
-import Jaigad from "../../Images/Ratnagiri/Jaigad.avif";
-import Bhatye from "../../Images/Ratnagiri/Bhatye_Beach.jpg";
-import Mandvi_Beach from "../../Images/Ratnagiri/Mandvi_Beach.jpg";
-import Parshuram_Temple from "../../Images/Ratnagiri/Parshuram_Temple.jpg";
-import Velaneshwar_Temple from "../../Images/Ratnagiri/Velaneshwar_Temple.jpg";
-import Tilak_Ali_Museum from "../../Images/Ratnagiri/Tilak_Ali_Museum.jpg";
-import Aare_Ware from "../../Images/Ratnagiri/Aare_Ware.jpg";
-import Patit_Pavan_Mandir from "../../Images/Ratnagiri/Patit_Pavan_Mandir.jpg"
+import khedBg from "../../Images/Khed/khedBg.jpg";
+import BhosteGhat from "../../Images/khed/BhosteGhat.jpg"
+import Jagbudi from "../../Images/Khed/Jagbudi.jpeg";
+import KalkaiMandir from "../../Images/Khed/KalkaiMandir.jpeg";
+import BuddhaCaves from "../../Images/Khed/BuddhaCaves.jpg";
+import Mahipatgad from "../../Images/Khed/Mahipatgad.jpg";
+import RaghuveerGhat from "../../Images/Khed/RaghuveerGhat.avif";
 
 function Ratnagiri() {
   const attractions = [
     {
-      title: "Ganapatipule Beach",
-      image: Ganapatipule,
+      title: "Bhoste Ghat",
+      image: BhosteGhat,
       description:
-        "Ganapatipule is a scenic beach town in Ratnagiri, Maharashtra, known for its pristine beaches and ancient Ganapati Temple. The temple, situated on the beach, is believed to be over 400 years old. It's a popular tourist spot for its natural beauty and spiritual significance.",
+        "Bhoste Ghat is a scenic mountain pass located near Khed in the Ratnagiri district of Maharashtra. Known for its winding roads and lush green surroundings, this ghat section is part of the Mumbai-Goa National Highway (NH-66). It offers breathtaking views of the Western Ghats, especially during the monsoon season when the entire region is covered in mist and greenery. While it is a visual treat for travelers and nature lovers, Bhoste Ghat is also known for its sharp curves and steep slopes, which make it a challenging drive. The ghat is an important route for transport but requires cautious driving due to landslide risks during heavy rains. Despite its challenges, Bhoste Ghat remains a captivating route that beautifully blends natural charm with adventurous roads.",
       price: 1500, // Price in INR
     },
     {
-      title: "Ratnadurg Fort",
-      image: Ratnadurg,
+      title: "Jagbudi River",
+      image: Jagbudi,
       description:
-        "Ratnadurg Fort is a 16th-century fort located in Ratnagiri, Maharashtra, overlooking the Arabian Sea. The fort, also known as Bhagawati Fort, is a significant historical landmark and offers stunning views of the surrounding coastline.",
+        "Jagbudi River flows through Khed in Ratnagiri, Maharashtra, and originates from the Sahyadri hills. It is known for its scenic beauty, especially during the monsoon when the surrounding areas turn lush green. The river supports local agriculture and wildlife, including crocodiles. Though peaceful, it can cause flooding in heavy rains. Jagbudi is an important natural and cultural part of the region.",
       price: 800,
     },
     {
-      title: "Thiba Palace",
-      image: Thiba_Palace,
+      title: "Kalkai Mandir",
+      image: KalkaiMandir,
       description:
-        "Thiba Palace is a majestic palace located in Ratnagiri, Maharashtra, built in 1910 for the exiled king of Burma, Thibaw. The palace showcases a blend of Indian and Burmese architectural styles. It now serves as a museum, offering a glimpse into the region's rich history.",
+        "Kalkai Devi Mandir is a well-known temple located near Khed in Ratnagiri, beside the Mumbai-Goa Highway (NH-66). Dedicated to Goddess Kalkai, the temple has a legend where a cow offered milk on a stone, believed to be divine. The temple is peaceful and especially lively during Navratri, attracting many devotees from the region.",
       price: 600,
     },
     {
-      title: "Jaigad Lighthouse",
-      image: Jaigad,
+      title: "Buddha Caves",
+      image: BuddhaCaves,
       description:
-        "The Jaigad Lighthouse, situated in Jaigad, Ratnagiri, is a historic lighthouse built in 1832, offering breathtaking views of the Arabian Sea and the surrounding coastline.",
+        "Khed Caves, also known as Bouddh Caves, are ancient rock-cut Buddhist caves located in the town of Khed, Ratnagiri. These caves date back to early centuries and reflect the deep spiritual and architectural heritage of Buddhism. The main cave features a large vihara (monastery) with small meditation cells and a stupa in a long chamber, which was used for worship and reflection. Alongside, there are four smaller caves. Though in a worn-out condition today, these caves still hold historical importance and offer a glimpse into the peaceful monastic life of ancient Buddhist monks.",
       price: 500,
     },
     {
-      title: "Aare Ware Beach",
-      image: Aare_Ware,
+      title: "Mahipat gad",
+      image: Mahipatgad,
       description:
-        "Aare Ware Beach in Ratnagiri is a tranquil and picturesque destination, known for its pristine white sand, crystal-clear waters, and stunning sunsets.",
+        "Mahipatgad Fort is a historic hill fort located near Khed in Ratnagiri, Maharashtra. Built in the 15th century by the Adilshahi dynasty and later captured by Chhatrapati Shivaji Maharaj, the fort sits at around 3,090 feet. It features six gateways, old temple ruins, horse stables, and wells. Surrounded by dense forest, it's a great spot for trekking and offers scenic views and a glimpse into Maratha history.",
       price: 1200,
     },
     {
-      title: "Patit Pavan Mandir",
-      image: Patit_Pavan_Mandir,
+      title: "Raghuveer Ghat",
+      image: RaghuveerGhat,
       description:
-        "Patit Pavan Mandir in Ratnagiri is a sacred temple dedicated to Lord Rama, known for its beautiful architecture and serene atmosphere.",
+        "Raghuveer Ghat is a scenic mountain pass located near Khed in Ratnagiri, Maharashtra. Situated at an elevation of approximately 760 meters above sea level, this 12-kilometer stretch connects the Ratnagiri and Satara districts. Known for its natural beauty, the ghat is particularly stunning during the monsoon season when it transforms into a lush green landscape, adorned with over 27 waterfalls and surrounded by dense fog. The peaceful atmosphere and breathtaking views make Raghuveer Ghat a must-visit destination for nature lovers and monsoon travelers seeking serenity and picturesque surroundings.",
       price: 400,
-    },
-    {
-      title: "Bhatye Beach",
-      image: Bhatye,
-      description:
-        "Bhatye Beach, located in Ratnagiri, is a picturesque beach with a long stretch of sand, ideal for walking, sunbathing, and relaxation.",
-      price: 1000,
-    },
-    {
-      title: "Velneshwar Shiva Temple",
-      image: Velaneshwar_Temple,
-      description:
-        "The Velneshwar Shiva Temple, located in Velneshwar, Ratnagiri, is an ancient temple dedicated to Lord Shiva, situated on the shores of the Arabian Sea.",
-      price: 700,
-    },
-    {
-      title: "Tilak Ali Museum",
-      image: Tilak_Ali_Museum,
-      description:
-        "The Tilak Ali Museum, located in Ratnagiri, showcases the ancestral house of Lokmanya Bal Gangadhar Tilak, a prominent Indian freedom fighter.",
-      price: 500,
-    },
-    {
-      title: "Mandvi Beach",
-      image: Mandvi_Beach,
-      description:
-        "Mandvi Beach is a scenic beach located in Ratnagiri, Maharashtra, known for its pristine waters, soft sand, and stunning views of the surrounding coastline.",
-      price: 1300,
-    },
-    {
-      title: "Parshuram Temple",
-      image: Parshuram_Temple,
-      description:
-        "The Parshuram Temple, located in Chiplun, Ratnagiri, is a sacred site dedicated to Lord Parshuram, the sixth incarnation of Lord Vishnu.",
-      price: 900,
     },
   ];
   
@@ -101,31 +59,20 @@ function Ratnagiri() {
       <div className="relative w-full min-h-screen font-serif flex items-center justify-center bg-cover bg-center p-4 sm:p-6 md:p-12 lg:p-24">
         <div
           className="absolute inset-0 bg-cover bg-center brightness-75"
-          style={{ backgroundImage: `url(${RTHomePage})` }}
+          style={{ backgroundImage: `url(${khedBg})` }}
           aria-hidden="true"
         ></div>
 
         <div className="relative z-10 text-center">
           <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold font-mono uppercase text-white p-4 sm:p-5 shadow-lg">
-            Ratnagiri
+            Khed
           </h1>
         </div>
       </div>
 
       <div className="m-4 sm:m-8 text-lg sm:text-xl p-4 sm:p-8 bg-slate-100  rounded-md shadow-2xl font-serif leading-normal">
         <p className="text-gray-800">
-          Ratnagiri district in Maharashtra is a paradise for beach lovers and
-          history enthusiasts alike. Imagine spending lazy afternoons on the
-          golden sands of Ganapatipule Beach, watching the waves dance against
-          the shore. Or exploring ancient forts like Ratnadurga and Murud, where
-          the walls whisper stories of battles and conquests from centuries
-          past. For a deeper dive into the region's maritime heritage, the
-          Ratnagiri Marine Museum is a must-visit, showcasing a fascinating
-          collection of marine life and artifacts. And let's not forget the
-          mouthwatering cuisine – Ratnagiri is famous for its fresh seafood
-          delicacies that are sure to tantalize your taste buds. With its scenic
-          beauty, rich history, and culinary delights, Ratnagiri district
-          promises an unforgettable getaway for all who visit.
+        Khed is a picturesque tehsil in the Ratnagiri district of Maharashtra, known for its natural beauty and historical significance. It is surrounded by the lush greenery of the Western Ghats, making it a haven for nature lovers and trekkers. The area is dotted with ancient temples, forts, and scenic viewpoints, offering visitors a blend of cultural heritage and tranquil landscapes. Attractions like the Buddha Caves, Mahipatgad Fort, and the scenic Bhoste Ghat attract history buffs, spiritual seekers, and adventure enthusiasts alike. The Khed tehsil also features the serene Jagbudi River and the Kalkai Mandir, making it a perfect destination for those seeking peace and exploration. Whether you're interested in exploring ancient rock-cut caves, trekking through dense forests, or simply enjoying the beauty of nature, Khed offers a memorable experience for all.
         </p>
       </div>
 

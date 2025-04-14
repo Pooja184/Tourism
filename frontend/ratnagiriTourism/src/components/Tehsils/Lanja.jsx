@@ -2,98 +2,29 @@ import React from "react";
 import OneCard from "./OneCard";
 // import RTHomePage from "../Images/Ratnagiri/RTHomePage.jpg";
 import RTHomePage from "../../Images/Ratnagiri/RTHomePage.jpg"
-import Ganapatipule from "../../Images/Ratnagiri/Ganapatipule.jpg"
+// import Ganapatipule from "../../Images/Ratnagiri/Ganapatipule.jpg"
 
-import Ratnadurg from "../../Images/Ratnagiri/Ratnadurg.jpg";
-import Thiba_Palace from "../../Images/Ratnagiri/Thiba.jpg";
-import Jaigad from "../../Images/Ratnagiri/Jaigad.avif";
-import Bhatye from "../../Images/Ratnagiri/Bhatye_Beach.jpg";
-import Mandvi_Beach from "../../Images/Ratnagiri/Mandvi_Beach.jpg";
-import Parshuram_Temple from "../../Images/Ratnagiri/Parshuram_Temple.jpg";
-import Velaneshwar_Temple from "../../Images/Ratnagiri/Velaneshwar_Temple.jpg";
-import Tilak_Ali_Museum from "../../Images/Ratnagiri/Tilak_Ali_Museum.jpg";
-import Aare_Ware from "../../Images/Ratnagiri/Aare_Ware.jpg";
-import Patit_Pavan_Mandir from "../../Images/Ratnagiri/Patit_Pavan_Mandir.jpg"
+import KhornikaDam from "../../Images/Lanja/khornikaDam.jpg";
+import Sawatsada from "../../Images/Lanja/sawatsada.webp";
+
 
 function Ratnagiri() {
   const attractions = [
     {
-      title: "Ganapatipule Beach",
-      image: Ganapatipule,
+      title: "Khornika Dam",
+      image: KhornikaDam,
       description:
-        "Ganapatipule is a scenic beach town in Ratnagiri, Maharashtra, known for its pristine beaches and ancient Ganapati Temple. The temple, situated on the beach, is believed to be over 400 years old. It's a popular tourist spot for its natural beauty and spiritual significance.",
+        "Khorninko Dam is a peaceful and scenic spot located in Lanja, Ratnagiri. Surrounded by lush greenery, it’s especially beautiful during the monsoon when water flows over its wide steps like a waterfall. This earthen dam is not only useful for irrigation but also a relaxing nature spot for visitors. Its calm atmosphere and natural charm make it a great escape for picnics and photography lovers.",
       price: 1500, // Price in INR
     },
     {
-      title: "Ratnadurg Fort",
-      image: Ratnadurg,
+      title: "Sawatsada Dam",
+      image: Sawatsada,
       description:
-        "Ratnadurg Fort is a 16th-century fort located in Ratnagiri, Maharashtra, overlooking the Arabian Sea. The fort, also known as Bhagawati Fort, is a significant historical landmark and offers stunning views of the surrounding coastline.",
+        "Swatsada Dam is a beautiful seasonal waterfall located near lanja in Ratnagiri district. Nestled in the greenery of the Western Ghats, it comes alive during the monsoon when water cascades down the rocky cliffs, creating a stunning natural waterfall. Easily visible from the Mumbai-Goa highway, it attracts travelers looking for a quick nature break. The peaceful surroundings and lush landscapes make it a favorite spot for photos, short walks, and enjoying the refreshing beauty of the rain-soaked Konkan. It's a perfect stop for nature lovers and monsoon travelers.",
       price: 800,
     },
-    {
-      title: "Thiba Palace",
-      image: Thiba_Palace,
-      description:
-        "Thiba Palace is a majestic palace located in Ratnagiri, Maharashtra, built in 1910 for the exiled king of Burma, Thibaw. The palace showcases a blend of Indian and Burmese architectural styles. It now serves as a museum, offering a glimpse into the region's rich history.",
-      price: 600,
-    },
-    {
-      title: "Jaigad Lighthouse",
-      image: Jaigad,
-      description:
-        "The Jaigad Lighthouse, situated in Jaigad, Ratnagiri, is a historic lighthouse built in 1832, offering breathtaking views of the Arabian Sea and the surrounding coastline.",
-      price: 500,
-    },
-    {
-      title: "Aare Ware Beach",
-      image: Aare_Ware,
-      description:
-        "Aare Ware Beach in Ratnagiri is a tranquil and picturesque destination, known for its pristine white sand, crystal-clear waters, and stunning sunsets.",
-      price: 1200,
-    },
-    {
-      title: "Patit Pavan Mandir",
-      image: Patit_Pavan_Mandir,
-      description:
-        "Patit Pavan Mandir in Ratnagiri is a sacred temple dedicated to Lord Rama, known for its beautiful architecture and serene atmosphere.",
-      price: 400,
-    },
-    {
-      title: "Bhatye Beach",
-      image: Bhatye,
-      description:
-        "Bhatye Beach, located in Ratnagiri, is a picturesque beach with a long stretch of sand, ideal for walking, sunbathing, and relaxation.",
-      price: 1000,
-    },
-    {
-      title: "Velneshwar Shiva Temple",
-      image: Velaneshwar_Temple,
-      description:
-        "The Velneshwar Shiva Temple, located in Velneshwar, Ratnagiri, is an ancient temple dedicated to Lord Shiva, situated on the shores of the Arabian Sea.",
-      price: 700,
-    },
-    {
-      title: "Tilak Ali Museum",
-      image: Tilak_Ali_Museum,
-      description:
-        "The Tilak Ali Museum, located in Ratnagiri, showcases the ancestral house of Lokmanya Bal Gangadhar Tilak, a prominent Indian freedom fighter.",
-      price: 500,
-    },
-    {
-      title: "Mandvi Beach",
-      image: Mandvi_Beach,
-      description:
-        "Mandvi Beach is a scenic beach located in Ratnagiri, Maharashtra, known for its pristine waters, soft sand, and stunning views of the surrounding coastline.",
-      price: 1300,
-    },
-    {
-      title: "Parshuram Temple",
-      image: Parshuram_Temple,
-      description:
-        "The Parshuram Temple, located in Chiplun, Ratnagiri, is a sacred site dedicated to Lord Parshuram, the sixth incarnation of Lord Vishnu.",
-      price: 900,
-    },
+    
   ];
   
   return (
@@ -107,25 +38,14 @@ function Ratnagiri() {
 
         <div className="relative z-10 text-center">
           <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold font-mono uppercase text-white p-4 sm:p-5 shadow-lg">
-            Ratnagiri
+           Lanja
           </h1>
         </div>
       </div>
 
       <div className="m-4 sm:m-8 text-lg sm:text-xl p-4 sm:p-8 bg-slate-100  rounded-md shadow-2xl font-serif leading-normal">
         <p className="text-gray-800">
-          Ratnagiri district in Maharashtra is a paradise for beach lovers and
-          history enthusiasts alike. Imagine spending lazy afternoons on the
-          golden sands of Ganapatipule Beach, watching the waves dance against
-          the shore. Or exploring ancient forts like Ratnadurga and Murud, where
-          the walls whisper stories of battles and conquests from centuries
-          past. For a deeper dive into the region's maritime heritage, the
-          Ratnagiri Marine Museum is a must-visit, showcasing a fascinating
-          collection of marine life and artifacts. And let's not forget the
-          mouthwatering cuisine – Ratnagiri is famous for its fresh seafood
-          delicacies that are sure to tantalize your taste buds. With its scenic
-          beauty, rich history, and culinary delights, Ratnagiri district
-          promises an unforgettable getaway for all who visit.
+        Lanja Tehsil in Ratnagiri is a hidden gem where nature and tradition come together in perfect harmony. Picture yourself wandering through lush green fields, the air filled with the sweet scent of mango blossoms from nearby orchards. In the heart of this peaceful tehsil lie ancient temples like the Shree Devi Bhavani Temple, where locals gather in devotion and festivals light up the entire village with joy. As you explore further, you’ll find winding roads lined with coconut trees and charming hamlets that offer a glimpse into the slow, serene rhythm of Konkan life. During the monsoon, waterfalls cascade down the hills, turning Lanja into a lush green paradise. Whether you're seeking tranquility, a connection to heritage, or just a breath of fresh air, Lanja welcomes you with open arms and a soul-soothing experience you won't forget.
         </p>
       </div>
 
@@ -135,7 +55,7 @@ function Ratnagiri() {
           Top Attractions
         </h2>
         <p className="text-lg sm:text-2xl text-gray-600 mt-2 capitalize pb-5">
-          get enchanted by the charm of ratnagiri
+          get enchanted by the charm of lanja
         </p>
       </div>
 

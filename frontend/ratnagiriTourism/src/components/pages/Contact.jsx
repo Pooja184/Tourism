@@ -1,8 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import RatnagiriMap from "../../Images/Ratnagiri_Map.jpg";
+import axios from "axios";
 
 const Contact= () => {
+const [formData,setFormData]= useState({
+  name:"",
+  email:"",
+  comment:"",
+})
+
+function handleChange(e){
+  setFormData({...formData,[e.target.name]:e.target.value})
+}
+
+function handleSubmit(e){
+  e.preventDefault();
+  axios.post("/api/v1/users/contact",formData)
+  .then((result)=>console.log(result))
+  .catch((err)=>console.log(err));
+  alert("Contact details submitted");
+}
+
   return (
     <div className="min-h-screen flex flex-col lg:flex-row items-center justify-center bg-gradient-to-r from-orange-50 to-orange-100 p-6">
       {/* Left Side - Image */}
@@ -28,12 +47,15 @@ const Contact= () => {
         </p>
 
         {/* Form */}
-        <form action="#" className="flex flex-col gap-5">
+        <form onSubmit={handleSubmit} className="flex flex-col gap-5">
           <input
             type="text"
             placeholder="Your Name"
             className="border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-black transition"
             required
+            onChange={handleChange}
+            value={formData.name}
+            name="name"
           />
 
           <input
@@ -41,12 +63,18 @@ const Contact= () => {
             placeholder="Your Email"
             className="border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-black transition"
             required
+            onChange={handleChange}
+            value={formData.email}
+            name="email"
           />
 
           <textarea
             placeholder="Your Message"
             className="border border-gray-300 p-3 rounded-lg h-32 resize-none focus:outline-none focus:ring-2 focus:ring-black transition"
             required
+            onChange={handleChange}
+            value={formData.comment}
+            name="comment"
           ></textarea>
 
           {/* Submit Button */}

@@ -45,8 +45,11 @@ const Navbar = () => {
   };
 
   return (
-    <div className="sticky top-0 z-50 bg-gray-900 font-serif">
-      <nav className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+    // lg:px-8
+    // className="sticky top-0 z-50 bg-gray-900 font-serif"
+    <div>
+      {/* <nav className="mx-auto max-w-7xl px-2 sm:px-6 ">  */}
+      <nav className="w-full px-2 sm:px-6 bg-gray-900 font-serif sticky top-0 z-50">
         <div className="relative flex h-16 items-center justify-between">
           <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-between">
             <span className="text-2xl text-white first-letter:text-orange-500 first-letter:text-4xl">
