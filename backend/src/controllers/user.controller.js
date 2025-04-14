@@ -5,6 +5,7 @@ import { ApiResponse } from "../utils/ApiResponse.js";
 import { Booking } from "../models/booking.model.js";
 import { Review } from "../models/reviews.model.js";
 import { BookingTour } from "../models/bookTour.model.js";
+import { Contact } from "../models/contact.model.js";
 
 const registerUser = asyncHandler(async (req, res) => {
   // res.status(200).json({
@@ -206,6 +207,25 @@ export const Getdeatils=asyncHandler(async(req,res)=>{
     } catch (error) {
         console.log(error)
     }
+})
+
+export const contactUs=asyncHandler(async(req,res)=>{
+   const {name,email,comment} = req.body;
+   console.log("req.body",req.body);
+
+   if(!name && !email && !comment){
+    throw new ApiError(400,"All fields are required");
+   }
+
+   const contact= await Contact.create({
+    name,
+    email,
+    comment,
+   });
+
+   return res
+   .status(201)
+   .json(new ApiResponse(201,contact,"Contact Details submited"))
 })
 
 export { registerUser, loginUser };
