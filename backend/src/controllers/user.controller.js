@@ -228,4 +228,36 @@ export const contactUs=asyncHandler(async(req,res)=>{
    .json(new ApiResponse(201,contact,"Contact Details submited"))
 })
 
+// export const paymentGateway=asyncHandler(async(req,res)=>{
+//   try {
+//     const { tourTitle, name, email, phone, travelDateFrom, travelDateTo, paymentMethod } = req.body;
+
+//     // Validate request body
+//     if (!tourTitle || !name || !email || !phone || !travelDateFrom || !travelDateTo || !paymentMethod) {
+//       return res.status(400).json({ message: "All fields are required!" });
+//     }
+
+//     const newBooking = new BookingTour({
+//       tourTitle,
+//       name,
+//       email,
+//       phone,
+//       travelDateFrom,
+//       travelDateTo,
+//       paymentMethod,
+//     });
+
+//     // Save the booking to the database
+//     await newBooking.save();
+
+//     return res.status(201).json({
+//       message: "Booking created successfully",
+//       booking: newBooking,
+//     });
+//   } catch (error) {
+//     console.error(error);
+//     return res.status(500).json({ message: "Server error" });
+//   }
+// })
+
 export { registerUser, loginUser };

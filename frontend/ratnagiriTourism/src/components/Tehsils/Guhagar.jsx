@@ -1,99 +1,99 @@
 import React from "react";
 import OneCard from "./OneCard";
 // import RTHomePage from "../Images/Ratnagiri/RTHomePage.jpg";
-import RTHomePage from "../../Images/Ratnagiri/RTHomePage.jpg"
-import Ganapatipule from "../../Images/Ratnagiri/Ganapatipule.jpg"
+import GuhagarBG from "../../Images/Guhagar/GuhagarBG.jpg"
+import GuhagarBeach from "../../Images/Guhagar/GuhagarBeach.jpg"
 
-import Ratnadurg from "../../Images/Ratnagiri/Ratnadurg.jpg";
-import Thiba_Palace from "../../Images/Ratnagiri/Thiba.jpg";
-import Jaigad from "../../Images/Ratnagiri/Jaigad.avif";
-import Bhatye from "../../Images/Ratnagiri/Bhatye_Beach.jpg";
-import Mandvi_Beach from "../../Images/Ratnagiri/Mandvi_Beach.jpg";
-import Parshuram_Temple from "../../Images/Ratnagiri/Parshuram_Temple.jpg";
-import Velaneshwar_Temple from "../../Images/Ratnagiri/Velaneshwar_Temple.jpg";
-import Tilak_Ali_Museum from "../../Images/Ratnagiri/Tilak_Ali_Museum.jpg";
-import Aare_Ware from "../../Images/Ratnagiri/Aare_Ware.jpg";
-import Patit_Pavan_Mandir from "../../Images/Ratnagiri/Patit_Pavan_Mandir.jpg"
+import VelneshwarBeach from "../../Images/Guhagar/VelneshwarBeach.jpg";
+import GopalgadFort from "../../Images/Guhagar/GopalgadFort.jpg";
+import DashbhujaGaneshTemple from "../../Images/Guhagar/DashbhujaGaneshTemple.jpg";
+import DabholFishMarket from "../../Images/Guhagar/DabholFishMarket.avif";
+// import Mandvi_Beach from "../../Images/Guhagar/Mandvi_Beach.jpg";
+// import Parshuram_Temple from "../../Images/Guhagar/Parshuram_Temple.jpg";
+// import Velaneshwar_Temple from "../../Images/Ratnagiri/Velaneshwar_Temple.jpg";
+// import Tilak_Ali_Museum from "../../Images/Ratnagiri/Tilak_Ali_Museum.jpg";
+// import Aare_Ware from "../../Images/Ratnagiri/Aare_Ware.jpg";
+// import Patit_Pavan_Mandir from "../../Images/Ratnagiri/Patit_Pavan_Mandir.jpg"
 
 function Ratnagiri() {
   const attractions = [
     {
-      title: "Ganapatipule Beach",
-      image: Ganapatipule,
+      title: "Guhagar Beach",
+      image: GuhagarBeach,
       description:
-        "Ganapatipule is a scenic beach town in Ratnagiri, Maharashtra, known for its pristine beaches and ancient Ganapati Temple. The temple, situated on the beach, is believed to be over 400 years old. It's a popular tourist spot for its natural beauty and spiritual significance.",
+        "A long, clean beach with soft white sand and shady Suru (Casuarina) trees. It's peaceful, perfect for walks, sunsets, and relaxing by the sea. A favorite spot for tourists who want calm and quiet.",
       price: 1500, // Price in INR
     },
     {
-      title: "Ratnadurg Fort",
-      image: Ratnadurg,
+      title: "Velneshwar Beach",
+      image: VelneshwarBeach,
       description:
-        "Ratnadurg Fort is a 16th-century fort located in Ratnagiri, Maharashtra, overlooking the Arabian Sea. The fort, also known as Bhagawati Fort, is a significant historical landmark and offers stunning views of the surrounding coastline.",
+        "A hidden gem around 15 km from Guhagar. Known for its clean sands and calm sea—safe for swimming. It’s less crowded and great for a peaceful picnic or quiet getaway.",
       price: 800,
     },
     {
-      title: "Thiba Palace",
-      image: Thiba_Palace,
+      title: "Gopalgad Fort",
+      image: GopalgadFort,
       description:
-        "Thiba Palace is a majestic palace located in Ratnagiri, Maharashtra, built in 1910 for the exiled king of Burma, Thibaw. The palace showcases a blend of Indian and Burmese architectural styles. It now serves as a museum, offering a glimpse into the region's rich history.",
+        "A historical sea fort located near Anjanwel, 10 km from Guhagar. It offers amazing views of the Arabian Sea and nearby villages. A great spot for history lovers and nature enthusiasts.",
       price: 600,
     },
     {
-      title: "Jaigad Lighthouse",
-      image: Jaigad,
+      title: "Dashbhuja Ganesh Temple",
+      image: DashbhujaGaneshTemple,
       description:
-        "The Jaigad Lighthouse, situated in Jaigad, Ratnagiri, is a historic lighthouse built in 1832, offering breathtaking views of the Arabian Sea and the surrounding coastline.",
+        "Located about 25 km from Guhagar, this temple is dedicated to Lord Ganesha with 10 arms (Dashbhuja). It’s a unique and sacred place, especially popular during Ganesh festivals.",
       price: 500,
     },
     {
-      title: "Aare Ware Beach",
-      image: Aare_Ware,
+      title: "Dabhol Fish Market",
+      image: DabholFishMarket,
       description:
-        "Aare Ware Beach in Ratnagiri is a tranquil and picturesque destination, known for its pristine white sand, crystal-clear waters, and stunning sunsets.",
+        "Located near Dabhol, this market is vibrant and full of local life. You can see fresh seafood being sold, and it gives you a real taste of the coastal lifestyle and local culture.",
       price: 1200,
     },
-    {
-      title: "Patit Pavan Mandir",
-      image: Patit_Pavan_Mandir,
-      description:
-        "Patit Pavan Mandir in Ratnagiri is a sacred temple dedicated to Lord Rama, known for its beautiful architecture and serene atmosphere.",
-      price: 400,
-    },
-    {
-      title: "Bhatye Beach",
-      image: Bhatye,
-      description:
-        "Bhatye Beach, located in Ratnagiri, is a picturesque beach with a long stretch of sand, ideal for walking, sunbathing, and relaxation.",
-      price: 1000,
-    },
-    {
-      title: "Velneshwar Shiva Temple",
-      image: Velaneshwar_Temple,
-      description:
-        "The Velneshwar Shiva Temple, located in Velneshwar, Ratnagiri, is an ancient temple dedicated to Lord Shiva, situated on the shores of the Arabian Sea.",
-      price: 700,
-    },
-    {
-      title: "Tilak Ali Museum",
-      image: Tilak_Ali_Museum,
-      description:
-        "The Tilak Ali Museum, located in Ratnagiri, showcases the ancestral house of Lokmanya Bal Gangadhar Tilak, a prominent Indian freedom fighter.",
-      price: 500,
-    },
-    {
-      title: "Mandvi Beach",
-      image: Mandvi_Beach,
-      description:
-        "Mandvi Beach is a scenic beach located in Ratnagiri, Maharashtra, known for its pristine waters, soft sand, and stunning views of the surrounding coastline.",
-      price: 1300,
-    },
-    {
-      title: "Parshuram Temple",
-      image: Parshuram_Temple,
-      description:
-        "The Parshuram Temple, located in Chiplun, Ratnagiri, is a sacred site dedicated to Lord Parshuram, the sixth incarnation of Lord Vishnu.",
-      price: 900,
-    },
+    // {
+    //   title: "Patit Pavan Mandir",
+    //   image: Patit_Pavan_Mandir,
+    //   description:
+    //     "Patit Pavan Mandir in Ratnagiri is a sacred temple dedicated to Lord Rama, known for its beautiful architecture and serene atmosphere.",
+    //   price: 400,
+    // },
+    // {
+    //   title: "Bhatye Beach",
+    //   image: Bhatye,
+    //   description:
+    //     "Bhatye Beach, located in Ratnagiri, is a picturesque beach with a long stretch of sand, ideal for walking, sunbathing, and relaxation.",
+    //   price: 1000,
+    // },
+    // {
+    //   title: "Velneshwar Shiva Temple",
+    //   image: Velaneshwar_Temple,
+    //   description:
+    //     "The Velneshwar Shiva Temple, located in Velneshwar, Ratnagiri, is an ancient temple dedicated to Lord Shiva, situated on the shores of the Arabian Sea.",
+    //   price: 700,
+    // },
+    // {
+    //   title: "Tilak Ali Museum",
+    //   image: Tilak_Ali_Museum,
+    //   description:
+    //     "The Tilak Ali Museum, located in Ratnagiri, showcases the ancestral house of Lokmanya Bal Gangadhar Tilak, a prominent Indian freedom fighter.",
+    //   price: 500,
+    // },
+    // {
+    //   title: "Mandvi Beach",
+    //   image: Mandvi_Beach,
+    //   description:
+    //     "Mandvi Beach is a scenic beach located in Ratnagiri, Maharashtra, known for its pristine waters, soft sand, and stunning views of the surrounding coastline.",
+    //   price: 1300,
+    // },
+    // {
+    //   title: "Parshuram Temple",
+    //   image: Parshuram_Temple,
+    //   description:
+    //     "The Parshuram Temple, located in Chiplun, Ratnagiri, is a sacred site dedicated to Lord Parshuram, the sixth incarnation of Lord Vishnu.",
+    //   price: 900,
+    // },
   ];
   
   return (
@@ -101,31 +101,20 @@ function Ratnagiri() {
       <div className="relative w-full min-h-screen font-serif flex items-center justify-center bg-cover bg-center p-4 sm:p-6 md:p-12 lg:p-24">
         <div
           className="absolute inset-0 bg-cover bg-center brightness-75"
-          style={{ backgroundImage: `url(${RTHomePage})` }}
+          style={{ backgroundImage: `url(${GuhagarBG})` }}
           aria-hidden="true"
         ></div>
 
         <div className="relative z-10 text-center">
           <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold font-mono uppercase text-white p-4 sm:p-5 shadow-lg">
-            Ratnagiri
+            Guhagar
           </h1>
         </div>
       </div>
 
       <div className="m-4 sm:m-8 text-lg sm:text-xl p-4 sm:p-8 bg-slate-100  rounded-md shadow-2xl font-serif leading-normal">
         <p className="text-gray-800">
-          Ratnagiri district in Maharashtra is a paradise for beach lovers and
-          history enthusiasts alike. Imagine spending lazy afternoons on the
-          golden sands of Ganapatipule Beach, watching the waves dance against
-          the shore. Or exploring ancient forts like Ratnadurga and Murud, where
-          the walls whisper stories of battles and conquests from centuries
-          past. For a deeper dive into the region's maritime heritage, the
-          Ratnagiri Marine Museum is a must-visit, showcasing a fascinating
-          collection of marine life and artifacts. And let's not forget the
-          mouthwatering cuisine – Ratnagiri is famous for its fresh seafood
-          delicacies that are sure to tantalize your taste buds. With its scenic
-          beauty, rich history, and culinary delights, Ratnagiri district
-          promises an unforgettable getaway for all who visit.
+        Guhagar is a charming coastal town in Maharashtra’s Ratnagiri district, known for its long stretches of pristine beaches and authentic Konkan culture. With soft white sands, swaying Casuarina trees, and a calm Arabian Sea, Guhagar offers a tranquil escape from the hustle and bustle of city life. The town is steeped in history and tradition, with ancient temples such as Vyadeshwar Temple and Durga Devi Temple adding a spiritual dimension to the coastal serenity.
         </p>
       </div>
 
@@ -135,7 +124,7 @@ function Ratnagiri() {
           Top Attractions
         </h2>
         <p className="text-lg sm:text-2xl text-gray-600 mt-2 capitalize pb-5">
-          get enchanted by the charm of ratnagiri
+          get enchanted by the charm of Guhagar
         </p>
       </div>
 

@@ -19,6 +19,7 @@ router.route("/getReviews").get(getReviews)
 router.route("/storetour").post(StoreTour)
 router.route("/gettour").get(Getdeatils)
 router.route("/contact").post(contactUs)
+// router.route("/payment").post(paymentGateway);
 
 //Secured routes
 // router.route("/logout").post( verifyJWT, logoutUser)
