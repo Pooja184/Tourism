@@ -2,8 +2,25 @@ import mongoose from "mongoose";
 
 const bookingTourSchema = new mongoose.Schema(
   {
-    tourTitle:{
+    tourTitle: {
       type: String,
+      required: true,
+    },
+    tourId: {
+      type: String,
+      required: true,
+    },
+    tourDescription: {
+      type: String,
+      required: true,
+    },
+    tourPrice: {
+      type: Number,
+      required: true,
+    },
+    tourImage: {
+      type: String,
+      required: true,
     },
     userId: {
       type: String,
@@ -34,6 +51,15 @@ const bookingTourSchema = new mongoose.Schema(
     paymentMethod: {
       type: String,
       required: true,
+    },
+    cardNumber: {
+      type: String,
+    },
+    expiryDate: {
+      type: String,
+    },
+    cvv: {
+      type: String,
     },
   },
   { timestamps: true }

@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 
 const ReviewPage = () => {
   const [reviews, setReviews] = useState([]);
@@ -32,7 +33,13 @@ const ReviewPage = () => {
       return;
     }
 
-    if (!formData.name || !formData.email || !formData.attractionVisited || !formData.rating || !formData.comment) {
+    if (
+      !formData.name ||
+      !formData.email ||
+      !formData.attractionVisited ||
+      !formData.rating ||
+      !formData.comment
+    ) {
       alert("Please fill all the fields");
       return;
     }
@@ -49,8 +56,8 @@ const ReviewPage = () => {
     try {
       const response = await axios.post("/api/v1/users/reviews", requestData);
       setReviews([response.data, ...reviews]);
-      alert("Thank you for your review! 🌴");
-      
+      toast.success("Thank you for your review! 🌴");
+
       setFormData({
         name: "",
         email: "",
@@ -165,12 +172,21 @@ const ReviewPage = () => {
           <div className="h-96 overflow-y-auto scrollbar-thin scrollbar-thumb-orange-500 scrollbar-track-gray-200 p-2">
             {reviews.length > 0 ? (
               reviews.map((rev) => (
-                <div key={rev._id} className="bg-orange-100 p-4 rounded-lg mb-4 shadow-sm">
-                  <p className="text-lg font-semibold text-orange-700">{rev.name}</p>
-                  <p className="text-sm text-gray-600">{rev.attractionVisited}</p>
+                <div
+                  key={rev._id}
+                  className="bg-orange-100 p-4 rounded-lg mb-4 shadow-sm"
+                >
+                  <p className="text-lg font-semibold text-orange-700">
+                    {rev.name}
+                  </p>
+                  <p className="text-sm text-gray-600">
+                    {rev.attractionVisited}
+                  </p>
                   <p className="text-yellow-500">{"⭐".repeat(rev.rating)}</p>
                   <p className="mt-2 text-gray-800">{rev.comment}</p>
-                  {rev.suggestions && <p className="text-gray-600 italic">💡 {rev.suggestions}</p>}
+                  {rev.suggestions && (
+                    <p className="text-gray-600 italic">💡 {rev.suggestions}</p>
+                  )}
                 </div>
               ))
             ) : (

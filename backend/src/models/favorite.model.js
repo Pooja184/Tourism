@@ -1,23 +1,32 @@
-import mongoose from "mongoose";
+import mongoose, { Schema } from "mongoose";
 
-const favoriteSchema = new mongoose.Schema(
-    {
-        userId: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "User",
-            required: true
-        },
-        tourId: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "Tour",
-            required: true
-        },
-        addedAt: {
-            type: Date,
-            default: Date.now
-        }
+const wishlistSchema = new Schema(
+  {
+    user: {
+      type: Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
     },
-    { timestamps: true }
+    tour: {
+      title: {
+        type: String,
+        required: true,
+      },
+      image: {
+        type: String,
+        required: true,
+      },
+      description: {
+        type: String,
+        required: true,
+      },
+      price: {
+        type: String, // Keeping as String since you use "700/-"
+        required: true,
+      },
+    },
+  },
+  { timestamps: true }
 );
 
-export const Favorite = mongoose.model("Favorite", favoriteSchema);
+export const Wishlist = mongoose.model("Wishlist", wishlistSchema);

@@ -1,7 +1,8 @@
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { FaUser, FaEnvelope, FaLock } from "react-icons/fa";
 import axios from "axios";
+import React, { useState } from "react";
+import toast from "react-hot-toast";
+import { FaEnvelope, FaLock, FaUser } from "react-icons/fa";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Sign() {
   const [formData, setFormData] = useState({
@@ -16,16 +17,18 @@ export default function Sign() {
     setFormData({ ...formData, [event.target.name]: event.target.value });
   }
 
-  function handleSubmit(event) {
-    event.preventDefault();
-    axios
-      .post("/api/v1/users/register", formData)
-      .then((result) => console.log(result))
-      .catch((err) => console.log(err));
-    alert("Registration Successful! 🎉");
-    navigate("/login"); // Redirect to login after successful sign-up
-  }
-
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await axios.post("/api/v1/users/register", formData);
+      toast.success(res.data.message || "Registration successful! 🎉");
+      navigate("/login");
+    } catch (error) {
+      const errMsg =
+        error.response?.data?.message || "Registration failed. Try again.";
+      toast.error(errMsg);
+    }
+  };
   return (
     <div className="flex items-center font-serif justify-center min-h-screen bg-gradient-to-r from-blue-50 to-indigo-100 px-4">
       <div className="w-full max-w-md p-8 space-y-6 bg-white shadow-lg rounded-xl border border-gray-300 sm:p-10">
@@ -87,7 +90,10 @@ export default function Sign() {
         </form>
         <p className="text-sm text-center text-gray-600">
           Already have an account?{" "}
-          <Link to="/logIn" className="text-indigo-500 font-semibold hover:underline">
+          <Link
+            to="/logIn"
+            className="text-indigo-500 font-semibold hover:underline"
+          >
             Login here
           </Link>
         </p>

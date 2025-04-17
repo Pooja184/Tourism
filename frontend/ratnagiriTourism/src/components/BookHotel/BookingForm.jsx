@@ -1,231 +1,209 @@
+import axios from "axios";
 import React, { useState } from "react";
+import toast from "react-hot-toast";
 import { useSearchParams } from "react-router-dom";
-import QRCode from "../../Images/QRCode.jpg"
+import QRCode from "../../Images/QRCode.jpg";
 
 const BookingForm = () => {
   const [searchParams] = useSearchParams();
+
   const tourTitle = searchParams.get("title");
+  const tourId = searchParams.get("id");
+  const tourDescription = searchParams.get("description");
+  const tourPrice = searchParams.get("price");
+  const tourImage = searchParams.get("image");
 
   const [formData, setFormData] = useState({
-    
-    userId:sessionStorage.getItem("userId"),
+    userId: sessionStorage.getItem("userId"),
     tourTitle,
+    tourId,
+    tourDescription,
+    tourPrice,
+    tourImage,
     name: "",
     email: "",
     phone: "",
     travelDateFrom: "",
     travelDateTo: "",
     paymentMethod: "creditCard",
-    // cardNumber: "",
-    // expiryDate: "",
-    // cvv: "",
+    cardNumber: "",
+    expiryDate: "",
+    cvv: "",
   });
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Booking Details:", formData);
     try {
-      const response=await fetch("api/v1/users/storetour",{
-        method:"POST",
-        headers:{
-          "content-type":"application/json" 
-        },
-        body:JSON.stringify(formData)
-      })
-      if(response.ok){
-        alert("Plan Submmited successfully")
-      }
+      const response = await axios.post("/api/v1/users/storetour", formData, {
+        headers: { "Content-Type": "application/json" },
+      });
+      response.status === 201
+        ? toast.success("Booking Successful!")
+        : toast.error("Booking Failed");
     } catch (error) {
-      console.log(error)
+      console.error("Booking Error:", error);
+      toast.error("An error occurred.");
     }
-    // alert("Booking Confirmed!🏝✈");
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-orange-100 to-orange-300 p-6">
-      <div className="bg-white shadow-2xl rounded-2xl p-8 w-full max-w-lg">
-        <h2 className="text-3xl font-bold text-gray-900 text-center">
-        📍 Book Your Tour
+    <div className="min-h-screen bg-gray-100 py-10 px-4 flex justify-center items-center">
+      <div className="bg-white w-full max-w-4xl shadow-2xl rounded-lg p-8">
+        <h2 className="text-3xl font-bold text-center text-gray-800 mb-6">
+          🧾 Travel Booking Gateway
         </h2>
 
-        <form className="mt-6 space-y-5" onSubmit={handleSubmit}>
+        {/* Tour Overview */}
+        <div className="grid md:grid-cols-2 gap-6 mb-8">
           <div>
-            <label className="block text-gray-700 font-medium">Tour Name</label>
-            <input
-              type="text"
-              value={tourTitle || ""}
-              name="tourName"
-              readOnly
-              className="w-full px-4 py-3 border rounded-lg bg-gray-200 text-gray-800 font-semibold"
+            <img
+              src={tourImage || "/default.jpg"}
+              alt={tourTitle}
+              className="rounded-lg w-full h-60 object-cover shadow"
             />
           </div>
-
-          {/* <div>
-            <label className="block text-gray-700 font-medium">Travel Date (From)</label>
-            <input
-              type="date"
-              name="travelDateFrom"
-              value={formData.travelDateFrom}
-              onChange={handleChange}
-              required
-              className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
-            />
+          <div>
+            <h3 className="text-2xl font-semibold text-gray-800 mb-2">
+              {tourTitle}
+            </h3>
+            <p className="text-gray-600 mb-4">{tourDescription}</p>
+            <p className="text-xl text-black font-bold">₹{tourPrice}/-</p>
           </div>
+        </div>
 
-          <div>
-            <label className="block text-gray-700 font-medium">Travel Date (To)</label>
-            <input
-              type="date"
-              name="travelDateTo"
-              value={formData.travelDateTo}
-              onChange={handleChange}
-              required
-              className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
-            />
-          </div> */}
+        <form onSubmit={handleSubmit} className="grid gap-6 md:grid-cols-2">
+          {/* Personal Info */}
+          <div className="space-y-4">
+            <h4 className="text-lg font-semibold text-gray-700 mb-2">
+              👤 Personal Information
+            </h4>
 
-          <div>
-            <label className="block text-gray-700 font-medium">Your Name</label>
             <input
               type="text"
               name="name"
-              placeholder="Enter your name"
               value={formData.name}
               onChange={handleChange}
+              placeholder="Full Name"
               required
-              className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-orange-500 focus:outline-none"
             />
-          </div>
 
-          <div>
-            <label className="block text-gray-700 font-medium">Email</label>
             <input
               type="email"
               name="email"
-              placeholder="Enter your email"
               value={formData.email}
               onChange={handleChange}
+              placeholder="Email"
               required
-              className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-orange-500 focus:outline-none"
             />
-          </div>
 
-          <div>
-            <label className="block text-gray-700 font-medium">
-              Phone Number
-            </label>
             <input
               type="tel"
               name="phone"
-              placeholder="Enter your phone number"
               value={formData.phone}
               onChange={handleChange}
+              placeholder="Phone Number"
               required
-              className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-orange-500 focus:outline-none"
             />
+
+            <div className="grid grid-cols-2 gap-4">
+              <input
+                type="date"
+                name="travelDateFrom"
+                value={formData.travelDateFrom}
+                onChange={handleChange}
+                required
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-orange-500 focus:outline-none"
+              />
+              <input
+                type="date"
+                name="travelDateTo"
+                value={formData.travelDateTo}
+                onChange={handleChange}
+                required
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-orange-500 focus:outline-none"
+              />
+            </div>
           </div>
 
-          <div>
-            <label className="block text-gray-700 font-medium">
-              Travel Date (From)
-            </label>
-            <input
-              type="date"
-              name="travelDateFrom"
-              value={formData.travelDateFrom}
-              onChange={handleChange}
-              required
-              className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
-            />
-          </div>
+          {/* Payment Section */}
+          <div className="space-y-4">
+            <h4 className="text-lg font-semibold text-gray-700 mb-2">
+              💳 Payment Method
+            </h4>
 
-          <div>
-            <label className="block text-gray-700 font-medium">
-              Travel Date (To)
-            </label>
-            <input
-              type="date"
-              name="travelDateTo"
-              value={formData.travelDateTo}
-              onChange={handleChange}
-              required
-              className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
-            />
-          </div>
-
-          <div>
-            <label className="block text-gray-700 font-medium">
-              Payment Method
-            </label>
             <select
               name="paymentMethod"
               value={formData.paymentMethod}
               onChange={handleChange}
-              className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-orange-500 focus:outline-none"
             >
-              <option value="creditCard">Credit Card</option>
-              <option value="upi">UPI</option>
+              <option value="creditCard">Credit / Debit Card</option>
+              <option value="upi">UPI / QR Code</option>
             </select>
+
+            {formData.paymentMethod === "creditCard" && (
+              <div className="bg-gray-50 border rounded-lg p-4 shadow">
+                <input
+                  type="text"
+                  name="cardNumber"
+                  placeholder="Card Number"
+                  value={formData.cardNumber}
+                  onChange={handleChange}
+                  required
+                  className="w-full px-4 py-3 mb-3 border border-gray-300 rounded-lg focus:ring-orange-500 focus:outline-none"
+                />
+                <div className="flex gap-3">
+                  <input
+                    type="text"
+                    name="expiryDate"
+                    placeholder="MM/YY"
+                    value={formData.expiryDate}
+                    onChange={handleChange}
+                    required
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-orange-500 focus:outline-none"
+                  />
+                  <input
+                    type="text"
+                    name="cvv"
+                    placeholder="CVV"
+                    value={formData.cvv}
+                    onChange={handleChange}
+                    required
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-orange-500 focus:outline-none"
+                  />
+                </div>
+              </div>
+            )}
+
+            {formData.paymentMethod === "upi" && (
+              <div className="text-center">
+                <p className="text-sm text-gray-500 mb-2">
+                  Scan this QR Code with your UPI App
+                </p>
+                <img
+                  src={QRCode}
+                  alt="UPI QR"
+                  className="w-40 h-40 mx-auto rounded-lg shadow"
+                />
+              </div>
+            )}
           </div>
 
-          {formData.paymentMethod === "creditCard" && (
-            <div>
-              <label className="block text-gray-700 font-medium">
-                Card Details
-              </label>
-              <input
-                type="text"
-                name="cardNumber"
-                placeholder="Card Number"
-                value={formData.cardNumber}
-                onChange={handleChange}
-                required
-                className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 mt-2"
-              />
-              <input
-                type="text"
-                name="expiryDate"
-                placeholder="Expiry Date (MM/YY)"
-                value={formData.expiryDate}
-                onChange={handleChange}
-                required
-                className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 mt-2"
-              />
-              <input
-                type="text"
-                name="cvv"
-                placeholder="CVV"
-                value={formData.cvv}
-                onChange={handleChange}
-                required
-                className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 mt-2"
-              />
-            </div>
-          )}
-
-          {formData.paymentMethod === "upi" && (
-            <div className="flex flex-col items-center">
-              <label className="block text-gray-700 font-medium">
-                Scan QR Code
-              </label>
-              <img
-                src={QRCode}//QR Code
-                alt="UPI QR Code"
-                className="w-40 h-40 mt-2"
-              />
-            </div>
-          )}
-
-          <button
-            type="submit"
-            className="w-full bg-orange-500 text-white py-3 rounded-lg hover:bg-orange-600 transition-all shadow-md"
-          >
-            Book Now 🚀
-          </button>
+          <div className="md:col-span-2">
+            <button
+              type="submit"
+              className="w-full bg-orange-500 hover:bg-orange-600 text-white text-lg py-3 rounded-lg shadow-md transition duration-300"
+            >
+              🧳 Confirm & Pay
+            </button>
+          </div>
         </form>
       </div>
     </div>
