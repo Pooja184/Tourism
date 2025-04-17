@@ -23,13 +23,10 @@ const Profile = () => {
       if (!userId) return;
 
       try {
-        setLoading(true);
         const res = await axios.get(`/api/v1/users/getAllFavourites/${userId}`);
         setWishlist(res.data.favorites || []);
       } catch (err) {
-        setError("Error fetching wishlist");
-      } finally {
-        setLoading(false);
+        console.error("Error fetching wishlist:", err);
       }
     };
 
@@ -41,13 +38,11 @@ const Profile = () => {
       if (!userId) return;
 
       try {
-        setLoading(true);
         const res = await axios.get(`/api/v1/users/userDetails/${userId}`);
         setUser(res.data);
       } catch (err) {
-        setError("Error fetching user details");
-      } finally {
-        setLoading(false);
+        console.error("Error fetching user details:", err);
+        setError("Failed to load profile details.");
       }
     };
 
@@ -59,11 +54,23 @@ const Profile = () => {
       if (!userId) return;
 
       try {
-        setLoading(true);
         const res = await axios.get(`/api/v1/users/bookingDetails/${userId}`);
-        setBookings(res.data.bookings || []);
+        if (res.data.bookings) {
+          setBookings(res.data.bookings);
+        } else {
+          setBookings([]);
+        }
       } catch (err) {
-        setError("Error fetching bookings");
+        if (
+          err.response &&
+          err.response.data &&
+          err.response.data.message === "No bookings found for this user"
+        ) {
+          setBookings([]);
+        } else {
+          console.error("Error fetching bookings:", err);
+          setError("Failed to load booking history.");
+        }
       } finally {
         setLoading(false);
       }
@@ -83,17 +90,15 @@ const Profile = () => {
 
   const handleLogout = () => {
     sessionStorage.removeItem("userId");
+    localStorage.removeItem("wishlist");
     setUser(null);
     navigate("/");
+    window.location.reload();
     toast.success("Logged out successfully");
   };
 
   if (loading) {
     return <div className="text-center py-10">Loading...</div>;
-  }
-
-  if (error) {
-    return <div className="text-center py-10 text-red-500">{error}</div>;
   }
 
   return (
@@ -167,6 +172,9 @@ const Profile = () => {
           ))}
         </div>
 
+        {/* Error Message (if any) */}
+        {error && <div className="text-center text-red-500 py-4">{error}</div>}
+
         {/* Content */}
         <div className="p-6">
           {/* Wishlist */}
@@ -211,7 +219,7 @@ const Profile = () => {
             </div>
           )}
 
-          {/* Bookings - Horizontal Scroll */}
+          {/* Booking History */}
           {activeTab === "history" && (
             <div className="max-w-screen-xl mx-auto py-6 overflow-x-auto">
               <div className="flex space-x-6 w-max">
@@ -221,7 +229,7 @@ const Profile = () => {
                       key={booking._id}
                       className="flex-none w-80 bg-white rounded-xl border-2 border-dashed border-gray-300 shadow-lg overflow-hidden"
                     >
-                      {/* Top Section: Tour Info */}
+                      {/* Top Section */}
                       <div className="flex items-center p-4 space-x-4 bg-gradient-to-r from-blue-600 to-orange-500 text-white">
                         <div className="h-20 w-20 rounded-md overflow-hidden bg-white shadow-inner">
                           <img
@@ -242,7 +250,7 @@ const Profile = () => {
                         </div>
                       </div>
 
-                      {/* Middle Section: Details */}
+                      {/* Booking Details */}
                       <div className="grid grid-cols-2 gap-4 p-4 text-sm text-gray-800">
                         <div>
                           <p className="font-semibold">Name</p>
@@ -270,7 +278,7 @@ const Profile = () => {
                         </div>
                       </div>
 
-                      {/* Bottom Section: Actions */}
+                      {/* Bottom Section */}
                       <div className="flex items-center justify-between px-4 py-3 bg-gray-50">
                         <span className="text-xs text-gray-400">
                           Booking ID: {booking._id}
