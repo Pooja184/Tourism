@@ -2,15 +2,17 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { FaHeart } from "react-icons/fa";
-import { Link } from "react-router-dom";
 import img1 from "../../Images/BookHotel/img1.jpg";
 import img2 from "../../Images/BookHotel/img2.jpg";
 import img3 from "../../Images/BookHotel/img3.webp";
 import img4 from "../../Images/BookHotel/img4.jpg";
 import img5 from "../../Images/BookHotel/img5.webp";
+import BookingForm from "./BookingForm"; // ✅ Import the modal
 
 const BookTour = () => {
   const [wishlist, setWishlist] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedTour, setSelectedTour] = useState(null);
   const userId = sessionStorage.getItem("userId");
 
   const experiences = [
@@ -70,13 +72,12 @@ const BookTour = () => {
         const res = await axios.get(`/api/v1/users/favourites/${userId}`);
         const wishlistTitles = res.data.favorites.map((fav) => fav.tour.title);
         setWishlist(wishlistTitles);
-        localStorage.setItem("wishlist", JSON.stringify(wishlistTitles)); // Store in local storage
+        localStorage.setItem("wishlist", JSON.stringify(wishlistTitles));
       } catch (err) {
         console.error("Error fetching wishlist:", err.message);
       }
     };
 
-    // Check local storage for wishlist
     const storedWishlist = JSON.parse(localStorage.getItem("wishlist"));
     if (storedWishlist) {
       setWishlist(storedWishlist);
@@ -85,7 +86,6 @@ const BookTour = () => {
     }
   }, [userId]);
 
-  // ✅ Toggle wishlist (add/remove)
   const handleWishlist = async (experience) => {
     try {
       const res = await axios.post("/api/v1/users/favourites", {
@@ -100,6 +100,16 @@ const BookTour = () => {
     } catch (error) {
       console.error("Wishlist toggle error:", error.message);
     }
+  };
+
+  const openModal = (tour) => {
+    setSelectedTour(tour);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setSelectedTour(null);
   };
 
   return (
@@ -123,7 +133,6 @@ const BookTour = () => {
               alt={exp.title}
               className="w-full aspect-[16/9] object-cover rounded-md"
             />
-
             <div className="flex flex-col flex-grow">
               <h3 className="text-lg font-semibold mt-4 text-gray-800 capitalize">
                 {exp.title}
@@ -135,18 +144,12 @@ const BookTour = () => {
             </div>
 
             <div className="mt-4 flex items-center space-x-2">
-              <Link
-                to={`/booking?title=${encodeURIComponent(exp.title)}&id=${
-                  exp.id
-                }&description=${encodeURIComponent(
-                  exp.description
-                )}&price=${encodeURIComponent(
-                  exp.price
-                )}&image=${encodeURIComponent(exp.image)}`}
+              <button
+                onClick={() => openModal(exp)}
                 className="flex-1 bg-orange-500 text-white py-2 px-4 rounded-lg hover:bg-orange-600 transition-colors text-center"
               >
                 Book Tour
-              </Link>
+              </button>
 
               <button
                 onClick={() => handleWishlist(exp)}
@@ -164,6 +167,14 @@ const BookTour = () => {
           </div>
         ))}
       </div>
+
+      {isModalOpen && (
+        <BookingForm
+          isOpen={isModalOpen}
+          onClose={closeModal}
+          tour={selectedTour}
+        />
+      )}
     </div>
   );
 };
