@@ -367,4 +367,20 @@ export const getAllFavorites = async (req, res) => {
   }
 };
 
+export const cancelBooking = async (req, res) => {
+  try {
+    const { bookingId } = req.params;
+
+    const deletedBooking = await BookingTour.findByIdAndDelete(bookingId);
+    if (!deletedBooking) {
+      return res.status(404).json({ message: "Booking not found" });
+    }
+
+    res.status(200).json({ message: "Booking cancelled successfully" });
+  } catch (error) {
+    console.error("Error cancelling booking:", error);
+    res.status(500).json({ message: "Something went wrong" });
+  }
+};
+
 export { loginUser, registerUser };

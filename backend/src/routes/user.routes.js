@@ -1,5 +1,6 @@
 import { Router } from "express";
 import {
+  cancelBooking,
   contactUs,
   createBooking,
   createReview,
@@ -33,6 +34,9 @@ router.route("/gettour").get(Getdeatils);
 router.route("/contact").post(contactUs);
 router.route("/favourites").post(toggleFavorite);
 router.route("/getAllFavourites/:userId").get(getAllFavorites);
+// routes/bookingRoutes.js or userRoutes.js (wherever you handle bookings)
+router.route("/deleteBooking/:bookingId").delete(cancelBooking);
+
 // router.route("/payment").post(paymentGateway);
 
 //Secured routes

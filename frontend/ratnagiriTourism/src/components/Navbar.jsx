@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { HiUserCircle } from "react-icons/hi2";
-import { FiMenu, FiX } from "react-icons/fi";
 import axios from "axios";
+import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import { FiMenu, FiX } from "react-icons/fi";
+import { HiUserCircle } from "react-icons/hi2";
+import { Link, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const [user, setUser] = useState(null);
@@ -21,7 +21,10 @@ const Navbar = () => {
         setUser(res.data);
         console.log(res.data, "getUserapi");
       } catch (err) {
-        console.error("Error fetching user:", err.response?.data?.message || err.message);
+        console.error(
+          "Error fetching user:",
+          err.response?.data?.message || err.message
+        );
       }
     };
 
@@ -64,11 +67,21 @@ const Navbar = () => {
 
           {/* Menu for large screens */}
           <div className="hidden sm:flex space-x-4">
-            <Link to="/home" className="text-gray-300 hover:text-white">Home</Link>
-            <Link to="/tehsils" className="text-gray-300 hover:text-white">Tehsils</Link>
-            <Link to="/about" className="text-gray-300 hover:text-white">About Us</Link>
-            <Link to="/contact" className="text-gray-300 hover:text-white">Contact</Link>
-            <Link to="/review" className="text-gray-300 hover:text-white">Review</Link>
+            <Link to="/home" className="text-gray-300 hover:text-white">
+              Home
+            </Link>
+            <Link to="/tehsils" className="text-gray-300 hover:text-white">
+              Tehsils
+            </Link>
+            <Link to="/about" className="text-gray-300 hover:text-white">
+              About Us
+            </Link>
+            <Link to="/contact" className="text-gray-300 hover:text-white">
+              Contact
+            </Link>
+            <Link to="/review" className="text-gray-300 hover:text-white">
+              Review
+            </Link>
 
             <button
               onClick={handlePlanYourStay}
@@ -78,7 +91,13 @@ const Navbar = () => {
             </button>
 
             {user ? (
-              <Link to="/profile" className="text-white text-4xl"><HiUserCircle /></Link>
+              <Link
+                to="/profile"
+                className="flex items-center gap-2 text-white text-lg font-semibold hover:underline"
+              >
+                <HiUserCircle className="text-3xl" />
+                <span className="">{user?.fullName}</span>
+              </Link>
             ) : (
               <Link
                 to="/login"
@@ -93,11 +112,41 @@ const Navbar = () => {
         {/* Mobile Menu Dropdown */}
         {menuOpen && (
           <div className="sm:hidden flex flex-col space-y-2 py-2">
-            <Link to="/home" className="text-gray-300 hover:text-white" onClick={() => setMenuOpen(false)}>Home</Link>
-            <Link to="/tehsils" className="text-gray-300 hover:text-white" onClick={() => setMenuOpen(false)}>Tehsils</Link>
-            <Link to="/about" className="text-gray-300 hover:text-white" onClick={() => setMenuOpen(false)}>About Us</Link>
-            <Link to="/contact" className="text-gray-300 hover:text-white" onClick={() => setMenuOpen(false)}>Contact</Link>
-            <Link to="/review" className="text-gray-300 hover:text-white" onClick={() => setMenuOpen(false)}>Review</Link>
+            <Link
+              to="/home"
+              className="text-gray-300 hover:text-white"
+              onClick={() => setMenuOpen(false)}
+            >
+              Home
+            </Link>
+            <Link
+              to="/tehsils"
+              className="text-gray-300 hover:text-white"
+              onClick={() => setMenuOpen(false)}
+            >
+              Tehsils
+            </Link>
+            <Link
+              to="/about"
+              className="text-gray-300 hover:text-white"
+              onClick={() => setMenuOpen(false)}
+            >
+              About Us
+            </Link>
+            <Link
+              to="/contact"
+              className="text-gray-300 hover:text-white"
+              onClick={() => setMenuOpen(false)}
+            >
+              Contact
+            </Link>
+            <Link
+              to="/review"
+              className="text-gray-300 hover:text-white"
+              onClick={() => setMenuOpen(false)}
+            >
+              Review
+            </Link>
 
             <button
               onClick={() => {
@@ -110,7 +159,13 @@ const Navbar = () => {
             </button>
 
             {user ? (
-              <Link to="/profile" className="text-white text-3xl" onClick={() => setMenuOpen(false)}><HiUserCircle /></Link>
+              <Link
+                to="/profile"
+                className="text-white text-3xl"
+                onClick={() => setMenuOpen(false)}
+              >
+                <HiUserCircle />
+              </Link>
             ) : (
               <Link
                 to="/login"
