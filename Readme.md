@@ -1,6 +1,6 @@
 # Tourism Management System
 
-![Tourism Website Screenshot]("/client/src/Images/Readme.png")
+![Tourism Website Screenshot](/client/src/Images/Readme.png)
 
 A full-stack web application designed to manage tourism-related services such as tour packages, bookings, user management, and admin control. This system enables users to explore and book tours seamlessly, while administrators can manage content and monitor bookings efficiently.
 
