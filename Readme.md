@@ -23,7 +23,6 @@ A full-stack web application designed to manage tourism-related services such as
 - **Backend:** Node.js, Express.js
 - **Database:** MongoDB
 - **Authentication:** JWT (JSON Web Tokens)
-- **Deployment:** (Add your deployment platform here)
 
 ---
 
