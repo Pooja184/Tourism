@@ -31,6 +31,6 @@ A full-stack web application designed to manage tourism-related services such as
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/yourusername/tourism-management-system.git
+   git clone https://github.com/Pooja184/Tourism.git
    cd tourism-management-system
    ```
